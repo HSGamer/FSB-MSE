@@ -1,0 +1,63 @@
+1.
+  a. Tín hiệu x(t) có 4 tần số
+       f1 = 0 ; f2 = 1 ; f3 = 2 ; f4 = 3 (kHz)
+       fm = 3                            (kHz)
+       => Tốc độ Nyquist = 3 * 2 = 6     (kHz)
+  b. Với fs = 5 (kHz)
+     => Khoảng Nyquist là [ -fs / 2 ; fs / 2 ] = [ -5 / 2 ; 5 / 2 ] = [ -2.5 ; 2.5 ]
+     
+     f1 = 0 nằm trong khoảng Nyquist
+     => fo1 = 0
+     
+     f2 = 1 nằm trong khoảng Nyquist
+     => fo2 = 1
+     
+     f3 = 2 nằm trong khoảng Nyquist
+     => fo3 = 2
+     
+     f4 = 3 không nằm trong khoảng Nyquist
+     => fo4 = f4 +- m * fs 
+            = 3 +- m * 5
+            = [ -7 -2 3 8 ... ]
+     => -2 nằm trong khoảng Nyquist
+     => fo4 = -2
+
+     => x0(t) = 5 + 3 * cos( 2 * pi * fo2 * t ) + 2 * cos( 2 * pi * fo3 * t ) + cos(2 * pi * fo4 * t)
+              = 5 + 3 * cos( 2 * pi * 1 * t ) + 2 * cos( 2 * pi * 2 * t ) + cos(2 * pi * (-2) * t)
+              = 5 + 3 * cos( 2 * pi * t ) + 2 * cos( 4 * pi * t ) + cos( -4 * pi * t )
+              = 5 + 3 * cos( 2 * pi * t ) + 2 * cos( 4 * pi * t ) + cos( 4 * pi * t )
+              = 5 + 3 * cos( 2 * pi * t ) + 3 * cos( 4 * pi * t )
+
+2.
+   Tín hiệu x(t) có 3 tần số
+     f1 = 4 ; f2 = 3 ; f3 = 6 (Hz)
+   
+   Với fs = 15 (Hz)
+   => Khoảng Nyquist là [ -7.5 ; 7.5 ]
+
+   f1, f2, f3 đều nằm trong khoảng Nyquist
+   => Không có hiện tượng chồng phổ
+   => Tín hiệu x(t) không bị thay đổi sau khi tái lập
+        x0(t) = x(t)
+
+3.
+  x(t) = 5 * cos( 10 * pi * t ) + 4 * cos( 8 * pi * t ) * cos( 6 * pi * t)
+       = 5 * cos( 10 * pi * t ) + 4 * ( 1 / 2 ) * ( cos( 8 * pi * t + 6 * pi * t ) + cos( 8 * pi * t - 6 * pi * t ) )
+       = 5 * cos( 10 * pi * t ) + 2 * ( cos( 14 * pi * t ) + cos( 2 * pi * t ) )
+       = 5 * cos( 10 * pi * t ) + 2 * cos( 14 * pi * t ) + 2 * cos( 2 * pi * t )
+  
+  a. Tín hiệu x(t) có 3 tần số
+       f1 = 5 ; f2 = 7 ; f3 = 1 (kHz)
+       fm = 7                   (kHz)
+       => Tần số lấy mẫu fs >= 2 * fm
+                         fs >= 2 * 7
+                         fs >= 14 (kHz)
+  
+  b. Với fs = 20 (kHz)
+     => Khoảng Nyquist là [ -10 ; 10 ]
+
+     f1, f2, f3 đều nằm trong khoảng Nyquist
+     => Không có hiện tượng chồng phổ
+     => Tín hiện x(t) không bị thay đổi sau khi tái lập
+          x0(t) = x(t) = 5 * cos( 10 * pi * t ) + 2 * cos( 14 * pi * t ) + 2 * cos( 2 * pi * t )
+    
