@@ -1,0 +1,99 @@
+1.
+    x(n) = {2, 3, 4}
+    h(n) = {1, 3, -3, 4}
+
+    y(n) = x(n) * h(n)
+         = sum(x(k) * h(n - k)) for k = 0 to infinity
+
+    y(0) = x(0) h(0) = 2 * 1 = 2
+    y(1) = ( x(0) h(1) ) + ( x(1) h(0) ) = 2 * 3 + 3 * 1 = 9
+    y(2) = ( x(0) h(2) ) + ( x(1) h(1) ) + ( x(2) h(0) ) = 2 * -3 + 3 * 3 + 4 * 1 = 7
+    y(3) = ( x(0) h(3) ) + ( x(1) h(2) ) + ( x(2) h(1) ) + ( x(3) h(0) ) = 2 * 4 + 3 * -3 + 4 * 3 = 11
+    y(4) = ( x(1) h(3) ) + ( x(2) h(2) ) = 3 * 4 + 4 * -3 = 0
+    y(5) = ( x(2) h(3) ) = 4 * 4 = 16
+
+    y(n) = {2, 9, 7, 11, 0, 16}
+
+2.
+    a. y(n) = ( x1(n) ) ^ 3
+        y(n) phụ thuộc vào x(n) (hiện tại)
+        => hệ thống nhân quả
+
+        Cho y1(n) = x1(n) ^ 3 và y2(n) = x2(n) ^ 3
+        Với tổ hợp tuyến tính:
+          x(n) = a1 * x1(n) + a2 * x2(n)
+          => y(n) = ( a1 * x1(n) + a2 * x2(n) ) ^ 3
+
+          a * y1(n) + b * y2(n) = a * x1(n) ^ 3 + b * x2(n) ^ 3 != y(n)
+        => hệ thống không tuyến tính
+
+        Với |x(n)| <= M => |y(n)| = |x(n)^3| <= M ^ 3
+        => hệ thống ổn định
+
+        Nếu dịch đầu vào x(n) -> x(n - n0) thì y(n) = x(n - n0) ^ 3 = y(n - n0)
+        => hệ thống bất biến theo thời gian
+
+    b. y(n) = x(n-2) + n x(n - 1)
+        y(n) phụ thuộc vào x(n - 1) và x(n - 2) (quá khứ)
+        => hệ thống nhân quả
+
+        Cho y1(n) = x1(n - 2) + n x1(n - 1) và y2(n) = x2(n - 2) + n x2(n - 1)
+        Với tổ hợp tuyến tính:
+          x(n) = a1 * x1(n) + a2 * x2(n)
+          => y(n) = ( a1 * x1(n - 2) + a2 * x2(n - 2) ) + n * ( a1 * x1(n - 1) + a2 * x2(n - 1) )
+                  = a1 * x1(n - 2) + a2 * x2(n - 2) + n * a1 * x1(n - 1) + n * a2 * x2(n - 1)
+                  = a1 * ( x1(n - 2) + n x1(n - 1) ) + a2 * ( x2(n - 2) + n x2(n - 1) )
+
+          a1 * y1(n) + a2 * y2(n) = a1 * ( x1(n - 2) + n x1(n - 1) ) + a2 * ( x2(n - 2) + n x2(n - 1) ) = y(n)
+        => hệ thống tuyến tính
+
+        Với |x(n)| <= M => |x(n - 2)| <= M và |n x(n - 1)| <= n * M
+        Do n có thế tăng không giới hạn => |y(n)| không bị chặn
+        => hệ thống không ổn định
+
+        Nếu dịch đầu vào x(n) -> x(n - n0) thì
+            y(n) = x(n - n0 - 2) + n x(n - n0 - 1)
+            y(n - n0) = x(n - n0 - 2) + (n - n0) x(n - n0 - 1) != y(n)
+        => hệ thống không bất biến theo thời gian
+
+3.
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int[] xn;
+        System.out.println("Enter the length of x[n]");
+        int length = scanner.nextInt();
+        xn = new int[length];
+        for (int i = 0; i < length; i++) {
+            System.out.println("Enter x[" + i + "]");
+            xn[i] = scanner.nextInt();
+        }
+
+        int[] hn;
+        System.out.println("Enter the length of h[n]");
+        length = scanner.nextInt();
+        hn = new int[length];
+        for (int i = 0; i < length; i++) {
+            System.out.println("Enter h[" + i + "]");
+            hn[i] = scanner.nextInt();
+        }
+
+        int convLength = xn.length + hn.length - 1;
+        int[] yn = new int[convLength];
+
+        for (int n = 0; n < convLength; n++) {
+            int sum = 0;
+            for (int k = 0; k < xn.length; k++) {
+                if (n - k >= 0 && n - k < hn.length) {
+                    sum += xn[k] * hn[n - k];
+                }
+            }
+            yn[n] = sum;
+        }
+
+        for (int n = 0; n < convLength; n++) {
+            System.out.println("y[" + n + "] = " + yn[n]);
+        }
+    }
+}
