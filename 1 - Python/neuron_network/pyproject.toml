@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "neuron-network"
+version = "0.1.0"
+description = ""
+authors = ["hsgamer <huynhqtienvtag@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+tensorflow = {extras = ["and-cuda"], version = "^2.18.0"}
+matplotlib = "^3.9.2"
+pandas = "^2.2.3"
+scikit-learn = "^1.5.2"
+opencv-python = "^4.10.0.84"
+pillow = "^11.0.0"
+tensorflow-datasets = "^4.9.7"
+seaborn = "^0.13.2"
+kagglehub = "^0.3.4"
+pydot = "^3.0.3"
+graphviz = "^0.20.3"
+
+
+[tool.poetry.group.neuron-cuda.dependencies]
+tensorflow = {extras = ["and-cuda"], version = "^2.18.0"}
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
