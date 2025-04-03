@@ -1,0 +1,3 @@
+Bài tập số 3:
+Mã hóa chuỗi ký tự "ABCABCEABCAABCEA" bằng phương pháp mã hóa LempelZiv-Welch (LZW) + Huffman Code + LRC
+Trình bày chi tiết các bước trên file Word của từng loại mã hoá chuỗi trên!
